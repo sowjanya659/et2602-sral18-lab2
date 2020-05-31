@@ -14,28 +14,27 @@ def index():
                 A: <input type="text" name="A" />
                 B: <input type="text" name="B" />
                 <p>
-                <input type="submit" name="operator" value="Mul" />
+                <input type="submit" name="operator" value="Div" />
             </form>
         '''
     elif request.method == 'POST':
         # calculate result
         a = request.form.get('operator')
-    
-
-        if a == 'Mul':
+  
+        if a == 'Div':
             A = request.form.get('A')
             B = request.form.get('B')
-            return redirect(url_for('mul', A=A, B=B))
+            return redirect(url_for('div', A=A, B=B))
 
 
-@app.route('/mul')
-def mul():
+
+@app.route('/div')
+def div():
     dict = request.args.to_dict()
     A = eval(dict['A'])
     B = eval(dict['B'])
-    result = A*B
+    result = A/B
     return 'result: %s' % result
-
 
 # run app
 if __name__ == '__main__':
